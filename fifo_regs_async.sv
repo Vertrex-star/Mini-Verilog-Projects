@@ -2,17 +2,17 @@ module async_fifo #(
     parameter int depth = 16,
     parameter int width = 8
 ) (
-    input  logic             wr_clk,
-    input  logic             wr_rst,
-    input  logic             wr_en,
+    input  logic wr_clk,
+    input  logic wr_rst,
+    input  logic wr_en,
     input  logic [width-1:0] din,
 
-    input  logic             rd_clk,
-    input  logic             rd_rst,
-    input  logic             rd_en,
+    input  logic rd_clk,
+    input  logic rd_rst,
+    input  logic rd_en,
 
-    output logic             full,
-    output logic             empty,
+    output logic full,
+    output logic empty,
     output logic [width-1:0] dout
 );
 
