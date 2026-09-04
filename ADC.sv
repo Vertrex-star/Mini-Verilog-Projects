@@ -13,7 +13,6 @@ logic [BIT_TREE_SIZE-1:0] tree;
 
 logic [5:0] n;
 logic [1:0] step;
-logic [3:0] temp_signal;
 logic temp_en;
 logic [3:0] temp_out;
 logic [3:0] cur_signal;
@@ -53,15 +52,10 @@ always_ff @(posedge clk or negedge rst_n) begin
 		if (!rst_n) begin
 			n <= 6'd0;
 			step <= 2'd0;
-			temp_signal <= 4'd0;
 			temp_out <= 4'd0;
 			temp_en <= 1'b0;
 		end else begin
 			temp_en <= 1'b0;
-		end
-
-		if (step == 0) begin
-			temp_signal <= signal;
 		end
 
 		if (cur_signal >= node_val) begin
@@ -70,8 +64,6 @@ always_ff @(posedge clk or negedge rst_n) begin
 			n <= right(n);
 		end
 		
-		temp_out <= node_val;
-
 		if (step == 2'd3) begin
 			temp_en <= 1'b1;
 			n <= 6'd0;
@@ -79,6 +71,8 @@ always_ff @(posedge clk or negedge rst_n) begin
 		end else begin
 			step <= step + 2'd1;
 		end
+		
+		temp_out <= node_val;
 	end
 end
 
